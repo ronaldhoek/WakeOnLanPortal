@@ -2,7 +2,7 @@
 WakeOnLan webbased portal using WakeOnLan library
 
 This project is based on the Aquila Technology WakeOnLan library
-Hoempage: http://aquilawol.sourceforge.net/
+Homepage: http://aquilawol.sourceforge.net/
 Download: http://sourceforge.net/projects/aquilawol/files/Library/
 
 By default web.config is configured to allow any user the access the portal.
