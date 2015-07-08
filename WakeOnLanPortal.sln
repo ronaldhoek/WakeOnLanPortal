@@ -1,0 +1,35 @@
+
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Web Developer Express 2010
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WakeOnLanPortal", ".", "{B2E59573-2285-4815-912A-9FE2EBC97ED1}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/WakeOnLanPortal"
+		Debug.AspNetCompiler.PhysicalPath = "."
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\WakeOnLanPortal\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/WakeOnLanPortal"
+		Release.AspNetCompiler.PhysicalPath = "."
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\WakeOnLanPortal\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "58253"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2E59573-2285-4815-912A-9FE2EBC97ED1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2E59573-2285-4815-912A-9FE2EBC97ED1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
