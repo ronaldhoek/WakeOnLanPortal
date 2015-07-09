@@ -1,5 +1,5 @@
 # WakeOnLanPortal
-WakeOnLan webbased portal using WakeOnLan library
+Webbased portal using WakeOnLan library
 
 This project is based on the Aquila Technology WakeOnLan library
 Homepage: http://aquilawol.sourceforge.net/
