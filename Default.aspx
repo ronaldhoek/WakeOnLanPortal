@@ -39,6 +39,8 @@
                         <HeaderStyle Width="65px" />
                         <ItemStyle HorizontalAlign="Center" />
                     </asp:ButtonField>
+                    <asp:ButtonField CommandName="rdpdownload" HeaderText="RDP" 
+                        InsertVisible="False" Text="Download" />
                 </Columns>
             </asp:GridView>
             <br />
@@ -57,6 +59,9 @@
                 ontick="tmrRefreshComputers_Tick">
             </asp:Timer>
         </ContentTemplate>
+        <Triggers>
+            <asp:PostBackTrigger ControlID="gvComputers" />
+        </Triggers>
     </asp:UpdatePanel>
     <asp:ObjectDataSource ID="odsComputers" runat="server" 
         SelectMethod="getMachines" TypeName="MachineList" 

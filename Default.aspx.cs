@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Text.RegularExpressions;
 
 public partial class _Default : System.Web.UI.Page
 {
@@ -26,7 +27,13 @@ public partial class _Default : System.Web.UI.Page
     {
         lblErrors.Visible = false;
         lblMessage.Visible = false;
-        lblDebug.Text = System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToString();
+        lblDebug.Visible = HttpContext.Current.IsDebuggingEnabled;
+        if (lblDebug.Visible)
+        {
+            lblDebug.Text =
+                System.Security.Principal.WindowsIdentity.GetCurrent().Name.ToString() + " - " +
+                HttpContext.Current.User.Identity.Name;
+        }
     }
     protected void btnRefreshClick(object sender, EventArgs e)
     {
@@ -42,15 +49,17 @@ public partial class _Default : System.Web.UI.Page
     }
     protected void gvComputers_RowCommand(object sender, GridViewCommandEventArgs e)
     {
-        if (e.CommandName.Equals("action", StringComparison.OrdinalIgnoreCase))
+        try
         {
-            try
+            // e.CommandArgument = row index
+            int rownum = int.Parse(e.CommandArgument.ToString());
+            GridView gv = (GridView)e.CommandSource;
+
+            // Regel info (naam) uitlezen
+            string info = ((GridView)e.CommandSource).Rows[rownum].Cells[0].Text;
+
+            if (e.CommandName.Equals("action", StringComparison.OrdinalIgnoreCase))
             {
-                // e.CommandArgument = row index
-                int rownum = int.Parse(e.CommandArgument.ToString());
-                GridView gv = (GridView)e.CommandSource;
-                // Info uitlezen
-                string info = ((GridView)e.CommandSource).Rows[rownum].Cells[0].Text;
                 // Status
                 if (((CheckBox)gv.Rows[rownum].Cells[4].Controls[0]).Checked)
                 {
@@ -71,10 +80,33 @@ public partial class _Default : System.Web.UI.Page
                     ShowMessage("Opstartcommando is verstuurd naar '" + info + "'.");
                 }
             }
-            catch(Exception err)
+            else if (e.CommandName.Equals("rdpdownload", StringComparison.OrdinalIgnoreCase))
             {
-                ShowError(err.Message);
+                // Hostnaam uitlezen
+                string host = ((GridView)e.CommandSource).Rows[rownum].Cells[1].Text;
+
+                // Basis RDP bestand uitlezen
+                System.IO.TextReader t = new System.IO.StreamReader(HttpContext.Current.Server.MapPath(@"~\App_Data\BaseRDP.txt"));                
+                string rdp = t.ReadToEnd();
+                t.Close();
+
+                // Speciale elementen vervangen
+                rdp = Regex.Replace(rdp, "%username%", HttpContext.Current.User.Identity.Name, RegexOptions.IgnoreCase);
+                rdp = Regex.Replace(rdp, "%hostname%", host, RegexOptions.IgnoreCase);
+
+                Response.Clear();
+                Response.Buffer = true;
+                Response.AddHeader("Content-Disposition", "attachment; filename=\"" + info + ".rdp\"");
+                Response.Charset = "utf-8";
+                Response.ContentType = "application/rdp";
+                Response.Output.Write(rdp);
+                Response.Flush();
+                Response.End();
             }
+        }
+        catch (Exception err)
+        {
+            ShowError(err.Message);
         }
     }
     protected void odsComputers_Selected(object sender, ObjectDataSourceStatusEventArgs e)
