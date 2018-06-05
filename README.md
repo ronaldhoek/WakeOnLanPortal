@@ -2,7 +2,7 @@
 Webbased portal using WakeOnLan library
 
 # Library usage
-This project is based on the Aquila Technology WakeOnLan library
+This project uses the Aquila Technology WakeOnLan library (WOL.dll)
 * Homepage: https://wol.aquilatech.com/
 * Source: https://github.com/basildane/WakeOnLAN/
 
