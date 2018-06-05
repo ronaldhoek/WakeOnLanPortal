@@ -1,15 +1,17 @@
 # WakeOnLanPortal
 Webbased portal using WakeOnLan library
 
+# Library usage
 This project is based on the Aquila Technology WakeOnLan library
-Homepage: http://aquilawol.sourceforge.net/
-Download: http://sourceforge.net/projects/aquilawol/files/Library/
-
-By default web.config is configured to allow any user the access the portal.
+Homepage: https://wol.aquilatech.com/
+Source: https://github.com/basildane/WakeOnLAN/
 
 Please create your own 'machines.xml' file bases on the sample.
 (or use the AquilaWOL application to create one)
-Download: http://sourceforge.net/projects/aquilawol/files/WakeOnLAN%202.x/
+Download: https://github.com/basildane/WakeOnLAN/releases/
+
+# Configuration
+By default web.config is configured to allow any user to access the portal.
 
 There's also an example on how to use the LDAP (Active directory) authentication for this projecty.
 When you running the project in Visual Stusio, you can test the LDAP authentication.
